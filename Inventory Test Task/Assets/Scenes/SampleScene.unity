@@ -131,6 +131,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1590334577}
     m_Modifications:
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: ID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: Name
+      value: Pan
+      objectReference: {fileID: 0}
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Size.x
       value: 0.55
@@ -142,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Size.z
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7514005074827451506, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Name
@@ -652,6 +668,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1590334577}
     m_Modifications:
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: ID
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: Name
+      value: Medical Kit
+      objectReference: {fileID: 0}
     - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Size.x
       value: 0.1
@@ -663,6 +687,10 @@ PrefabInstance:
     - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Size.z
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7514005074827451506, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Name
@@ -1095,11 +1123,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1769513355}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &2066516017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7514005074827451506, guid: a0748045f98335648aed13e3ef531089, type: 3}
-  m_PrefabInstance: {fileID: 5519464238324717445}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2075434054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,6 +1377,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1590334577}
     m_Modifications:
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: Name
+      value: Tent
+      objectReference: {fileID: 0}
+    - target: {fileID: -2259290797260601285, guid: a0748045f98335648aed13e3ef531089, type: 3}
+      propertyPath: Type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5492972136346292720, guid: a0748045f98335648aed13e3ef531089, type: 3}
       propertyPath: m_Size.y
       value: 0.5
@@ -1412,34 +1443,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8724680226422527976, guid: a0748045f98335648aed13e3ef531089, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1708406071}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7514005074827451506, guid: a0748045f98335648aed13e3ef531089, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5519464238324717447}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0748045f98335648aed13e3ef531089, type: 3}
 --- !u!4 &5519464238324717446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8724680226422527976, guid: a0748045f98335648aed13e3ef531089, type: 3}
   m_PrefabInstance: {fileID: 5519464238324717445}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5519464238324717447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2066516017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
