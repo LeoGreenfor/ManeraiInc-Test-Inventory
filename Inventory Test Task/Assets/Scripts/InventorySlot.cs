@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEditor.Progress;
 
 [System.Serializable]
 public class InventorySlot : MonoBehaviour
 {
+    public bool IsEmpty => item == null;
+
     [Header("Item")]
     public InventoryItem item;
     public int quantity;
@@ -14,7 +17,15 @@ public class InventorySlot : MonoBehaviour
     [Header("UI slot")]
     [SerializeField] private UiInventorySlot slot;
 
-    public bool IsEmpty => item == null;
+    private UnityEvent AddnRemoveItemEvent;
+
+    private void Start()
+    {
+        if (AddnRemoveItemEvent == null)
+            AddnRemoveItemEvent = new UnityEvent();
+
+        AddnRemoveItemEvent.AddListener(OnAddnRemoveItem);
+    }
 
     /// <summary>
     /// Adds item to slot and parent them
@@ -33,7 +44,7 @@ public class InventorySlot : MonoBehaviour
             newItem.transform.SetParent(gameObject.transform, true);
         }
 
-        StartCoroutine(ServerRequestSender.SendRequest(item));
+        AddnRemoveItemEvent?.Invoke();
         slot.SetItemInfo(item, quantity);
     }
 
@@ -50,7 +61,7 @@ public class InventorySlot : MonoBehaviour
         {
             ClearSlot();
         }
-        StartCoroutine(ServerRequestSender.SendRequest(item));
+        AddnRemoveItemEvent?.Invoke();
     }
 
     /// <summary>
@@ -62,5 +73,10 @@ public class InventorySlot : MonoBehaviour
         quantity = 0;
 
         slot.RemoveItemInfo();
+    }
+
+    private void OnAddnRemoveItem()
+    {
+        StartCoroutine(ServerRequestSender.SendRequest(item));
     }
 }
