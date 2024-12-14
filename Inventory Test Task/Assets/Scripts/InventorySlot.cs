@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -26,6 +27,7 @@ public class InventorySlot : MonoBehaviour
             newItem.gameObject.transform.position = newPosition;
         }
 
+        StartCoroutine(ServerRequestSender.SendRequest(item));
         slot.SetItemInfo(item, quantity);
     }
 
@@ -38,6 +40,7 @@ public class InventorySlot : MonoBehaviour
         {
             ClearSlot();
         }
+        StartCoroutine(ServerRequestSender.SendRequest(item));
     }
 
     public void ClearSlot()

@@ -87,7 +87,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
+    private void OnMouseDown()
     {
         inventoryCanvas.gameObject.SetActive(true);
     }

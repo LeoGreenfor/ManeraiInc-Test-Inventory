@@ -1431,6 +1431,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3351076476858343317, guid: 9c21647f7fb1b3a418bc101c9c1199a8, type: 3}
+      propertyPath: m_Spacing
+      value: 0.02
+      objectReference: {fileID: 0}
     - target: {fileID: 3985148668728297923, guid: 9c21647f7fb1b3a418bc101c9c1199a8, type: 3}
       propertyPath: m_Name
       value: Backpack
