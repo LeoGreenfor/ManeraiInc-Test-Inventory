@@ -10,12 +10,11 @@ public class InventoryItem : MonoBehaviour
     public int ID;
     public ItemType Type;
 
-    public enum ItemType
-    {
-        Consumable,
-        Weapon,
-        Miscellaneous
-    }
-
     public bool IsInInventory;
+}
+public enum ItemType
+{
+    Consumable,
+    Weapon,
+    Miscellaneous
 }

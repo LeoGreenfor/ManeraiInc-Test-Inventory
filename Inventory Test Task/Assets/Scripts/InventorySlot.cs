@@ -6,8 +6,12 @@ using static UnityEditor.Progress;
 [System.Serializable]
 public class InventorySlot : MonoBehaviour
 {
+    [Header("Item")]
     public InventoryItem item;
     public int quantity;
+    
+    [Header("UI slot")]
+    [SerializeField] private UiInventorySlot slot;
 
     public bool IsEmpty => item == null;
 
@@ -21,11 +25,15 @@ public class InventorySlot : MonoBehaviour
             var newPosition = gameObject.transform.position;
             newItem.gameObject.transform.position = newPosition;
         }
+
+        slot.SetItemInfo(item, quantity);
     }
 
     public void RemoveItem(int amount)
     {
         quantity -= amount;
+        slot.UpdItemCount(quantity);
+
         if (quantity <= 0)
         {
             ClearSlot();
@@ -36,5 +44,7 @@ public class InventorySlot : MonoBehaviour
     {
         item = null;
         quantity = 0;
+
+        slot.RemoveItemInfo();
     }
 }

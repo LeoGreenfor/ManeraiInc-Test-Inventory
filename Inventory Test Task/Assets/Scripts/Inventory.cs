@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Progress;
 
 [RequireComponent(typeof(Collider))]
 public class Inventory : MonoBehaviour
 {
-    public List<InventorySlot> slots = new List<InventorySlot>();
-    public int maxSlots = 20;
+    [Header("Inventory Settings")]
+    [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
+    [SerializeField] private int maxSlots = 20;
 
     private Collider _collider;
 
@@ -68,7 +70,7 @@ public class Inventory : MonoBehaviour
     {
         foreach (var slot in slots)
         {
-            if (slot.item != null && slot.item.ID == item.ID)
+            if (!slot.IsEmpty && slot.item.ID == item.ID)
             {
                 if (slot.quantity >= quantity)
                 {
