@@ -21,16 +21,19 @@ public class DragingController : MonoBehaviour
         _mainCamera = Camera.main;
     }
 
+    // Enabeling outline
     private void OnMouseEnter()
     {
         outline.enabled = true;
     }
 
+    // Disable outline
     private void OnMouseExit()
     {
         outline.enabled = false;
     }
 
+    // Begin drag an item
     private void OnMouseDown()
     {
         isDragging = true;
@@ -47,6 +50,7 @@ public class DragingController : MonoBehaviour
         _rb.useGravity = false;
     }
 
+    // On draging an item
     private void OnMouseDrag()
     {
         if (isDragging)
@@ -62,6 +66,7 @@ public class DragingController : MonoBehaviour
         }
     }
 
+    // End drag an item
     private void OnMouseUp()
     {
         isDragging = false;
@@ -69,6 +74,10 @@ public class DragingController : MonoBehaviour
         _rb.useGravity = true;
     }
 
+    /// <summary>
+    /// Sets freeze position on rigitbody of an item
+    /// </summary>
+    /// <param name="value">True to freeze, false to unfreeze</param>
     public void SetFreezePosition(bool value)
     {
         _rb.freezeRotation = value;

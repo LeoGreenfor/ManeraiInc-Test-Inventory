@@ -16,6 +16,11 @@ public class InventorySlot : MonoBehaviour
 
     public bool IsEmpty => item == null;
 
+    /// <summary>
+    /// Adds item to slot and parent them
+    /// </summary>
+    /// <param name="newItem">Item</param>
+    /// <param name="amount">Amount of items</param>
     public void AddItem(InventoryItem newItem, int amount)
     {
         item = newItem;
@@ -25,12 +30,17 @@ public class InventorySlot : MonoBehaviour
         {
             var newPosition = gameObject.transform.position;
             newItem.gameObject.transform.position = newPosition;
+            newItem.transform.SetParent(gameObject.transform, true);
         }
 
         StartCoroutine(ServerRequestSender.SendRequest(item));
         slot.SetItemInfo(item, quantity);
     }
 
+    /// <summary>
+    /// Removes items from slot
+    /// </summary>
+    /// <param name="amount">Amount of removing items</param>
     public void RemoveItem(int amount)
     {
         quantity -= amount;
@@ -43,6 +53,9 @@ public class InventorySlot : MonoBehaviour
         StartCoroutine(ServerRequestSender.SendRequest(item));
     }
 
+    /// <summary>
+    /// Clears slot from any item
+    /// </summary>
     public void ClearSlot()
     {
         item = null;

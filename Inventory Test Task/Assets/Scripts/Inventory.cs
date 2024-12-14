@@ -12,13 +12,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] private int maxSlots = 20;
     [SerializeField] private Canvas inventoryCanvas;
 
-    private Collider _collider;
-
-    private void Start()
-    {
-        _collider = GetComponent<Collider>();
-    }
-
+    /// <summary>
+    /// Adding item to the inventory on touching bag
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerStay(Collider other)
     {
         var obj = other.gameObject.GetComponent<InventoryItem>();
@@ -28,9 +25,13 @@ public class Inventory : MonoBehaviour
             AddItem(obj, 1);
             obj.IsInInventory = true;
             objDrag.SetFreezePosition(true);
-            Debug.LogError($"add {obj.Name}");
         }
     }
+
+    /// <summary>
+    /// Removing item from inventory on exiting bag
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         var obj = other.gameObject.GetComponent<InventoryItem>();
@@ -40,10 +41,14 @@ public class Inventory : MonoBehaviour
             obj.IsInInventory = false;
             objDrag.SetFreezePosition(false);
             RemoveItem(obj, 1);
-            Debug.LogError($"remove {obj.Name}");
         }
     }
 
+    /// <summary>
+    /// Add item to inventory. If there is same item - stasks them. If not - puts in an empty slot
+    /// </summary>
+    /// <param name="item">Item to add</param>
+    /// <param name="quantity">Count of items to add</param>
     public void AddItem(InventoryItem item, int quantity)
     {
         foreach (var slot in slots)
@@ -51,7 +56,6 @@ public class Inventory : MonoBehaviour
             if (!slot.IsEmpty && slot.item.ID == item.ID)
             {
                 slot.AddItem(item, quantity);
-                Debug.LogError("a");
                 return;
             }
         }
@@ -61,12 +65,16 @@ public class Inventory : MonoBehaviour
             if (slot.IsEmpty)
             {
                 slot.AddItem(item, quantity);
-                Debug.LogError("b");
                 return;
             }
         }
     }
 
+    /// <summary>
+    /// Removes item from inventory
+    /// </summary>
+    /// <param name="item">Item to remove</param>
+    /// <param name="quantity">Count of items to remove</param>
     public void RemoveItem(InventoryItem item, int quantity)
     {
         foreach (var slot in slots)
@@ -87,11 +95,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    // Set inventory canvas to active
     private void OnMouseDown()
     {
         inventoryCanvas.gameObject.SetActive(true);
     }
 
+    // Set inventory canvas to unactive
     private void OnMouseExit()
     {
         inventoryCanvas.gameObject.SetActive(false);

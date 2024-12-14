@@ -14,6 +14,11 @@ public class UiInventorySlot : MonoBehaviour
 
     [SerializeField] private Sprite[] typeOfItemsIcons;
 
+    /// <summary>
+    /// Sets item info in slot and activates it
+    /// </summary>
+    /// <param name="item">Item</param>
+    /// <param name="count">Count of items</param>
     public void SetItemInfo(InventoryItem item, int count)
     {
         naming.text = item.Name;
@@ -38,11 +43,18 @@ public class UiInventorySlot : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Updates items count
+    /// </summary>
+    /// <param name="count">New count</param>
     public void UpdItemCount(int count)
     {
         quantity.text = count.ToString();
     }
 
+    /// <summary>
+    /// Clears item info from slot and deactivates it
+    /// </summary>
     public void RemoveItemInfo()
     {
         naming.text = "";
