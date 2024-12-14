@@ -41,6 +41,8 @@ public class InventorySlot : MonoBehaviour
         {
             var newPosition = gameObject.transform.position;
             newItem.gameObject.transform.position = newPosition;
+            var newRotation = gameObject.transform.rotation;
+            newItem.gameObject.transform.rotation = newRotation;
             newItem.transform.SetParent(gameObject.transform, true);
         }
 
