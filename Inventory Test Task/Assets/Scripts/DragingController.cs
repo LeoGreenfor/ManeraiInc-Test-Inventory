@@ -7,10 +7,10 @@ public class DragingController : MonoBehaviour
 {
     private Rigidbody rb;
     private Camera mainCamera;
-    private bool isDragging = false;
     private Vector3 offset;
-    private Plane dragPlane; 
+    private Plane dragPlane;
 
+    public bool isDragging = false;
     public float dragSpeed = 10f; 
 
     void Start()
@@ -50,10 +50,16 @@ public class DragingController : MonoBehaviour
         }
     }
 
-    void OnMouseUp()
+    private void OnMouseUp()
     {
         isDragging = false;
 
         rb.useGravity = true;
+    }
+
+    public void SetFreezePosition(bool value)
+    {
+        rb.freezeRotation = value;
+       
     }
 }

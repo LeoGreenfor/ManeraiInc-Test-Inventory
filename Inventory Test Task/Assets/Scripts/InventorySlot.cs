@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
+[System.Serializable]
 public class InventorySlot : MonoBehaviour
 {
     public InventoryItem item;
@@ -14,6 +15,12 @@ public class InventorySlot : MonoBehaviour
     {
         item = newItem;
         quantity += amount;
+
+        if (quantity == 1)
+        {
+            var newPosition = gameObject.transform.position;
+            newItem.gameObject.transform.position = newPosition;
+        }
     }
 
     public void RemoveItem(int amount)

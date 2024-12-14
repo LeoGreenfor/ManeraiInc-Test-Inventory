@@ -16,4 +16,6 @@ public class InventoryItem : MonoBehaviour
         Weapon,
         Miscellaneous
     }
+
+    public bool IsInInventory;
 }
