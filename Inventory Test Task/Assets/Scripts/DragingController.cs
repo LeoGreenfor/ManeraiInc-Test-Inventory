@@ -5,47 +5,59 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class DragingController : MonoBehaviour
 {
-    private Rigidbody rb;
-    private Camera mainCamera;
-    private Vector3 offset;
-    private Plane dragPlane;
-
     public bool isDragging = false;
-    public float dragSpeed = 10f; 
+    public float dragSpeed = 10f;
+
+    [SerializeField] private Outline outline;
+
+    private Rigidbody _rb;
+    private Camera _mainCamera;
+    private Vector3 _offset;
+    private Plane _dragPlane;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        mainCamera = Camera.main;
+        _rb = GetComponent<Rigidbody>();
+        _mainCamera = Camera.main;
     }
 
-    void OnMouseDown()
+    private void OnMouseEnter()
+    {
+        outline.enabled = true;
+    }
+
+    private void OnMouseExit()
+    {
+        outline.enabled = false;
+    }
+
+    private void OnMouseDown()
     {
         isDragging = true;
 
-        dragPlane = new Plane(mainCamera.transform.forward, transform.position);
+        _dragPlane = new Plane(_mainCamera.transform.forward, transform.position);
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (dragPlane.Raycast(ray, out float distance))
+        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (_dragPlane.Raycast(ray, out float distance))
         {
             Vector3 hitPoint = ray.GetPoint(distance);
-            offset = transform.position - hitPoint;
+            _offset = transform.position - hitPoint;
         }
 
-        rb.useGravity = false;
+        _rb.useGravity = false;
     }
 
-    void OnMouseDrag()
+    private void OnMouseDrag()
     {
         if (isDragging)
         {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (dragPlane.Raycast(ray, out float distance))
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (_dragPlane.Raycast(ray, out float distance))
             {
-                Vector3 targetPosition = ray.GetPoint(distance) + offset;
+                Vector3 targetPosition = ray.GetPoint(distance) + _offset;
 
                 Vector3 newPosition = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * dragSpeed);
-                rb.MovePosition(newPosition);
+                _rb.MovePosition(newPosition);
             }
         }
     }
@@ -54,12 +66,12 @@ public class DragingController : MonoBehaviour
     {
         isDragging = false;
 
-        rb.useGravity = true;
+        _rb.useGravity = true;
     }
 
     public void SetFreezePosition(bool value)
     {
-        rb.freezeRotation = value;
+        _rb.freezeRotation = value;
        
     }
 }

@@ -10,6 +10,7 @@ public class Inventory : MonoBehaviour
     [Header("Inventory Settings")]
     [SerializeField] private List<InventorySlot> slots = new List<InventorySlot>();
     [SerializeField] private int maxSlots = 20;
+    [SerializeField] private Canvas inventoryCanvas;
 
     private Collider _collider;
 
@@ -84,5 +85,15 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        inventoryCanvas.gameObject.SetActive(true);
+    }
+
+    private void OnMouseExit()
+    {
+        inventoryCanvas.gameObject.SetActive(false);
     }
 }

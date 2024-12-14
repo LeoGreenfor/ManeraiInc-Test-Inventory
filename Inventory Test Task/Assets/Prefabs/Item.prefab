@@ -133,3 +133,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDragging: 0
   dragSpeed: 50
+  outline: {fileID: 8956078951432036811}
